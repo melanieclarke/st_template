@@ -5,6 +5,10 @@ STScI Package Template
     :target: http://www.astropy.org
     :alt: Powered by Astropy Badge
 
+.. image:: https://codecov.io/gh/melanieclarke/st_template/branch/main/graph/badge.svg
+    :target: https://codecov.io/gh/melanieclarke/st_template
+    :alt: Coverage Status
+
 Template repository based on the
 `stsci-package-template <https://github.com/spacetelescope/stsci-package-template>`_
 project, with updates based in part on work in the `jwst <https://github.com/spacetelescope/jwst>`_ package.
