@@ -12,59 +12,35 @@ on:
   pull_request:
   #  branches: # only build on PRs against 'main' if you need to further limit when CI is run.
   #  - main
+  # schedule: # schedule a regular run if needed
+  #  # Weekly Monday 9AM build
+  #  - cron: "0 9 * * 1"
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
-  # Github Actions supports ubuntu, windows, and macos virtual environments:
-  # https://help.github.com/en/actions/reference/virtual-environments-for-github-hosted-runners
-  ci_tests:
-    name: ${{ matrix.name }}
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        include:
-          - name: Code style checks
-            os: ubuntu-latest
-            python: 3.x
-            toxenv: check-style
-
-          - name: Security audit
-            os: ubuntu-latest
-            python: 3.x
-            toxenv: check-security
-
-          - name: Python 3.9 with oldest supported dependencies
-            os: ubuntu-latest
-            python: 3.9
-            toxenv: test-oldestdeps
-
-          - name: Python 3.11 with coverage checking
-            os: ubuntu-latest
-            python: 3.11
-            toxenv: test-cov
-
-          - name: OS X - Python 3.10
-            os: macos-latest
-            python: 3.10
-            toxenv: test
-
-          - name: Windows - Python 3.10
-            os: windows-latest
-            python: 3.10
-            toxenv: test
-
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-      with:
-        fetch-depth: 0
-    - name: Set up python ${{ matrix.python }} on ${{ matrix.os }}
-      uses: actions/setup-python@v2
-      with:
-        python-version: ${{ matrix.python }}
-    - name: Install base dependencies
-      run: |
-        python -m pip install --upgrade pip
-        python -m pip install tox
-    - name: Test with tox
-      run: |
-        tox -e ${{ matrix.toxenv }}
+  check:
+    uses: OpenAstronomy/github-actions-workflows/.github/workflows/tox.yml@v1
+    with:
+      envs: |
+        - linux: check-style
+        - linux: check-security
+        - linux: build-dist
+  test:
+    uses: OpenAstronomy/github-actions-workflows/.github/workflows/tox.yml@main
+    with:
+      envs: |
+        - linux: test-oldestdeps-xdist-cov
+          python-version: 3.9
+        - linux: test-xdist
+          python-version: 3.9
+        - linux: test-xdist
+          python-version: 3.10
+        - linux: test-xdist
+          python-version: 3.11
+        - macos: test-xdist
+          python-version: 3.11
+        - linux: test-xdist-cov
+          coverage: codecov

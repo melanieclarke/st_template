@@ -1,24 +1,15 @@
 STScI Package Template
 ======================
 
-.. image:: https://readthedocs.org/projects/stsci-package-template/badge/?version=latest
-    :target: https://stsci-package-template.readthedocs.io/en/latest/?badge=latest
-    :alt: Documentation Status
-
-.. image:: https://github.com/spacetelescope/stsci-package-template/workflows/CI/badge.svg
-    :target: https://github.com/spacetelescope/stsci-package-template/actions
-    :alt: GitHub Actions CI Status
-
 .. image:: http://img.shields.io/badge/powered%20by-AstroPy-orange.svg?style=flat
     :target: http://www.astropy.org
     :alt: Powered by Astropy Badge
 
-To use this package template, see instructions for
-`GitHub's creating a repository from a template <https://docs.github.com/en/free-pro-team@latest/github/creating-cloning-and-archiving-repositories/creating-a-repository-from-a-template>`_.
+Template repository based on the
+`stsci-package-template <https://github.com/spacetelescope/stsci-package-template>`_
+project, with updates based in part on work in the `jwst <https://github.com/spacetelescope/jwst>`_ package.
 
-After you have created your new repository from this template,
-please go through all the files in your new repository carefully
-and customize it as you see fit. Please also refer to
+Please also refer to
 `STScI style guides <https://github.com/spacetelescope/style-guides>`_.
 
 
