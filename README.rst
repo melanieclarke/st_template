@@ -9,10 +9,6 @@ STScI Package Template
     :target: https://github.com/spacetelescope/stsci-package-template/actions
     :alt: GitHub Actions CI Status
 
-.. image:: https://codecov.io/gh/spacetelescope/stsci-package-template/branch/main/graph/badge.svg
-    :target: https://codecov.io/gh/spacetelescope/stsci-package-template
-    :alt: Coverage Status
-
 .. image:: http://img.shields.io/badge/powered%20by-AstroPy-orange.svg?style=flat
     :target: http://www.astropy.org
     :alt: Powered by Astropy Badge
