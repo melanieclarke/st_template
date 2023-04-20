@@ -12,8 +12,8 @@ license = {file = "LICENSE.rst"}
 dynamic = ["version"]
 requires-python = ">=3.9"
 dependencies = [
-    "numpy",
-    "astropy",
+    "numpy>=1.24",
+    "astropy>=5.2",
 ]
 classifiers = [
     "Intended Audience :: Science/Research",
@@ -52,11 +52,12 @@ packagename_script = "packagename.example_mod:main"
 [project.urls]
 Homepage = "https://github.com/spacetelescope/packagename"
 
-[tool.setuptools.packages]
-find = {namespaces = false}
+[tool.setuptools.packages.find]
+where = ["packagename"]
 
 [tool.setuptools.package-data]
 "*" = ["*.fits, *.csv"]
+"packagename" = ["data/*"]
 "packagename.tests" = ["data/*"]
 
 [tool.setuptools_scm]

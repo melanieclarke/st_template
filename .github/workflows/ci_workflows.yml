@@ -25,42 +25,32 @@ jobs:
           - name: Code style checks
             os: ubuntu-latest
             python: 3.x
-            toxenv: codestyle
-
-          - name: PEP 517
-            os: ubuntu-latest
-            python: 3.x
-            toxenv: pep517
+            toxenv: check-style
 
           - name: Security audit
             os: ubuntu-latest
             python: 3.x
-            toxenv: securityaudit
+            toxenv: check-security
 
           - name: Python 3.9 with oldest supported dependencies
             os: ubuntu-latest
             python: 3.9
-            toxenv: py39-test-oldestdeps
+            toxenv: test-oldestdeps
 
           - name: Python 3.11 with coverage checking
             os: ubuntu-latest
             python: 3.11
-            toxenv: py311-test-cov
+            toxenv: test-cov
 
           - name: OS X - Python 3.10
             os: macos-latest
             python: 3.10
-            toxenv: py310-test
+            toxenv: test
 
           - name: Windows - Python 3.10
             os: windows-latest
             python: 3.10
-            toxenv: py310-test
-
-          - name: Python 3.11 with latest dev versions of key dependencies
-            os: ubuntu-latest
-            python: 3.11
-            toxenv: py311-test-devdeps
+            toxenv: test
 
     steps:
     - name: Checkout code
