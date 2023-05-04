@@ -52,9 +52,6 @@ packagename_script = "packagename.example_mod:main"
 [project.urls]
 Homepage = "https://github.com/spacetelescope/packagename"
 
-[tool.setuptools.packages.find]
-where = ["packagename"]
-
 [tool.setuptools.package-data]
 "*" = ["*.fits, *.csv"]
 "packagename" = ["data/*"]

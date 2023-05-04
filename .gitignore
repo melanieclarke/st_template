@@ -14,8 +14,10 @@ __pycache__
 */cython_version.py
 htmlcov
 .coverage
+coverage.xml
 MANIFEST
 .ipynb_checkpoints
+requirements-min.txt
 
 # Sphinx
 docs/api
