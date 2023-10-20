@@ -1,6 +1,6 @@
 import pytest
 
-from packagename.example_mod import primes, do_primes, main
+from packagename.example_mod import do_primes, main, primes
 
 
 def test_primes():
@@ -8,17 +8,17 @@ def test_primes():
 
 
 def test_imax_too_big():
-    with pytest.raises(ValueError):
+    with pytest.raises(ValueError, match="imax should be"):
         primes(10001)
 
 
 def test_no_cython():
-    with pytest.raises(NotImplementedError):
+    with pytest.raises(NotImplementedError, match="example C code"):
         do_primes(2, usecython=True)
 
 
 def test_cli(capsys):
-    main(args=['-tp', '2'])
+    main(args=["-tp", "2"])
     captured = capsys.readouterr()
-    assert captured.out.startswith('Found 2 prime numbers')
+    assert captured.out.startswith("Found 2 prime numbers")
     assert len(captured.err) == 0

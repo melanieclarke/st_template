@@ -1,8 +1,8 @@
-__all__ = ['primes', 'do_primes']
+__all__ = ["primes", "do_primes"]
 
 
 def primes(imax):
-    """Returns prime numbers up to ``imax``.
+    """Return prime numbers up to ``imax``.
 
     Parameters
     ----------
@@ -26,14 +26,15 @@ def primes(imax):
     [2, 3]
 
     """
-
-    p = list(range(10000))
+    nmax = 10000
+    p = list(range(nmax))
     result = []
     k = 0
     n = 2
 
-    if imax > 10000:
-        raise ValueError("imax should be <= 10000")
+    if imax > nmax:
+        msg = f"imax should be <= {nmax}"
+        raise ValueError(msg)
 
     while len(result) < imax:
         i = 0
@@ -43,15 +44,15 @@ def primes(imax):
             p[k] = n
             k = k + 1
             result.append(n)
-            if k > 10000:  # pragma: no cover
+            if k > nmax:  # pragma: no cover
                 break
         n = n + 1
 
     return result
 
 
-def do_primes(n, usecython=False):
-    """Returns prime numbers up to ``n``.
+def do_primes(n, *, usecython=False):
+    """Return prime numbers up to ``n``.
 
     Parameters
     ----------
@@ -83,11 +84,10 @@ def do_primes(n, usecython=False):
 
     """
     if usecython:
-        raise NotImplementedError(
-            "This template does not have the example C code included.")
-    else:
-        # Using pure python primes
-        return primes(n)
+        msg = "This template does not have the example C code included."
+        raise NotImplementedError(msg)
+    # Using pure python primes
+    return primes(n)
 
 
 def main(args=None):
@@ -95,15 +95,31 @@ def main(args=None):
     import argparse
     from time import time
 
-    parser = argparse.ArgumentParser(description='Process some integers.')
-    parser.add_argument('-c', '--use-cython', dest='cy', action='store_true',
-                        help='Use the Cython-based Prime number generator.')
-    parser.add_argument('-t', '--timing', dest='time', action='store_true',
-                        help='Time the Prime number generator.')
-    parser.add_argument('-p', '--print', dest='prnt', action='store_true',
-                        help='Print all of the Prime numbers.')
-    parser.add_argument('n', metavar='N', type=int,
-                        help='Get Prime numbers up to this number.')
+    parser = argparse.ArgumentParser(description="Process some integers.")
+    parser.add_argument(
+        "-c",
+        "--use-cython",
+        dest="cy",
+        action="store_true",
+        help="Use the Cython-based Prime number generator.",
+    )
+    parser.add_argument(
+        "-t",
+        "--timing",
+        dest="time",
+        action="store_true",
+        help="Time the Prime number generator.",
+    )
+    parser.add_argument(
+        "-p",
+        "--print",
+        dest="prnt",
+        action="store_true",
+        help="Print all of the Prime numbers.",
+    )
+    parser.add_argument(
+        "n", metavar="N", type=int, help="Get Prime numbers up to this number."
+    )
 
     res = parser.parse_args(args)
 
@@ -111,11 +127,11 @@ def main(args=None):
     primes = do_primes(res.n, usecython=res.cy)
     post = time()
 
-    print(f'Found {len(primes)} prime numbers')
-    print(f'Largest prime: {primes[-1]}')
+    print(f"Found {len(primes)} prime numbers")  # noqa: T201
+    print(f"Largest prime: {primes[-1]}")  # noqa: T201
 
     if res.time:
-        print(f'Running time: {post - pre} s')
+        print(f"Running time: {post - pre} s")  # noqa: T201
 
     if res.prnt:
-        print(f'Primes: {primes}')
+        print(f"Primes: {primes}")  # noqa: T201
