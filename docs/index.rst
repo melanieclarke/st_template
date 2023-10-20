@@ -1,11 +1,28 @@
-*************************
-packagename Documentation
-*************************
+packagename
+===========
 
-This is the documentation for ``packagename``,
-a package which contains stuff that do things.
+The packagename project documentation.
+
+Getting Started
+---------------
+
+.. toctree::
+   :maxdepth: 2
+
+   packagename/install
+
+Usage
+-----
+
+.. toctree::
+   :maxdepth: 2
+
+   packagename/usage
 
 Reference/API
-=============
+-------------
 
-.. automodapi:: packagename
+.. toctree::
+   :maxdepth: 2
+
+   packagename/index
